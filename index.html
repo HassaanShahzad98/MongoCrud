@@ -286,10 +286,11 @@
       // api url
       // https://saylaniclass.herokuapp.com/
 
-      const URL = "https://mongodb-crud98.herokuapp.com/";  //Heruko deployed
-      // const URL = "http://localhost:3001/";  //Localhost
+      //const URL = "https://mongodb-crud98.herokuapp.com/";  //Heruko deployed
+      const URL = "http://localhost:3001/";  //Localhost
 
       const getAllUser = async () => {
+        console.log('getAllUser working')
         const tableBody = document.getElementById("tableBody");
         tableBody.innerHTML = "";
         let tableRow = ``;
@@ -377,6 +378,7 @@
       };
 
       const addUser = async () => {
+        try {
         const name = document.getElementById("user-name").value;
         const email = document.getElementById("user-email").value;
         const address = document.getElementById("user-address").value;
@@ -395,6 +397,9 @@
             document.getElementById("user-address").value = "";
           })
           .catch((error) => console.error(error));
+        } catch (error) {
+          console.log('addUserError',error)
+        }
       };
 
       window.onload = function () {
