@@ -1,9 +1,10 @@
+  
 import express from "express";
 import morgan from "morgan";
 import cors from "cors"
 import mongoose from "mongoose"
 
-mongoose.connect('mongodb+srv://Hassaanshahzad98:123@nodecrudcluster.pnzhv.mongodb.net/nodeCrudCluster?retryWrites=true&w=majority')
+mongoose.connect('mongodb+srv://Hassaanshahzad98:123@nodecrudcluster.pnzhv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
 const USER = mongoose.model('users', {
     name: String,
     email: String,
@@ -35,6 +36,7 @@ app.get('/users', (req, res) => {
             res.status(500).send("error happened")
         }
     })
+    .catch(error => {console.log(error.message)})
 })
 
 // add user
@@ -57,7 +59,8 @@ app.post('/user', (req, res) => {
         newUser.save().then(() => {
             console.log('user created success')
             res.json({response: 'User Created'});
-        });
+        })
+        .catch(error => {console.log(error.message)})
        
     }
 })
@@ -85,6 +88,8 @@ app.put('/user/:id', (req, res) => {
                 res.status(500).send("error happened")
             }
     })
+    .catch(error => {console.log(error.message)})
+
 
 })
 
@@ -97,6 +102,8 @@ app.delete('/user/:id', (req, res) => {
             res.status(500).send("error happened")
         }
     })
+    .catch(error => {console.log(error.message)})
+
 })
 
 app.listen(port);
